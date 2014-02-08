@@ -1,0 +1,3 @@
+[submodule "pyWL"]
+	path = pyWL
+	url = https://github.com/kelvan/pyWL.git
