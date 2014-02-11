@@ -15,21 +15,29 @@ class Deps:
 
         deps = Departures.get_by_stops(rbl)
 
+        result_dicts = []
+
         for station in sorted(deps.values(), key=itemgetter('name')):
             result.append('='*len(station['name']))
             result.append(station['name'])
             result.append('='*len(station['name']))
 
             for departure in sorted(station['departures'], key=itemgetter('countdown')):
-                dep_text = departure['line']['name'].ljust(6)
-                dep_text += departure['line']['towards'].ljust(20)
-                if departure['line']['barrierFree']:
-                    dep_text += str(departure['countdown']).rjust(4)
-                else:
-                    dep_text += str(departure['countdown']).rjust(4)
+                #dep_text = departure['line']['name'].ljust(6)
+                #dep_text += departure['line']['towards'].ljust(20)
+                #if departure['line']['barrierFree']:
+                #    dep_text += str(departure['countdown']).rjust(4)
+                #else:
+                #    dep_text += str(departure['countdown']).rjust(4)
 
-                result.append(dep_text)
+                #result.append(dep_text)
+                bar = ('timePlanned', 'timeReal')
+                for foo in bar:
+                    if foo in departure:
+                        del(departure[foo])
 
-        return result
+                result_dicts.append(departure)
+
+        return result_dicts
 
 deps = Deps()
