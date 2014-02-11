@@ -120,6 +120,8 @@ ApplicationWindow {
 
             delegate: Text {
                 text: modelData
+                font.pixelSize: 14
+
                 MouseArea {
                     id: stopList_mouse
                     enabled: stopListVisible
