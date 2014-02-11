@@ -97,7 +97,10 @@ ApplicationWindow {
         }
 
         ListView {
-            anchors.fill: parent
+            anchors {
+                fill: parent
+                margins: 10
+            }
             id: stopList
             delegate: Text {
                 text: modelData
