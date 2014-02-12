@@ -10,14 +10,16 @@ Requirements
  - QtGraphicalEffects
  - python >= 3.3 (not tested with 3.2)
 
-prepare pyWL
+pyWL
+----
 
     git submodule init
     git submodule update pyWL
 
 see pyWL github project for howto import stations and add apikey
 
-run first qml2 test gui:
+Generic QML2 test gui
+---------------------
 
     qmlviewer qml/search.qml # search and departures
 
