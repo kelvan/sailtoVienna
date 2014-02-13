@@ -8,6 +8,8 @@ import io.thp.pyotherside 1.0
 ApplicationWindow {
     property bool stopListVisible: false
     property bool departureListVisible: false
+    property string activeStation: ''
+
 
     id: window
 
@@ -16,7 +18,7 @@ ApplicationWindow {
 
     color: 'white'
 
-    title: 'SailtoVienna'
+    title: activeStation.length == 0 ? 'SailtoVienna' : 'SailtoVienna - ' + activeStation
 
     RectangularGlow {
         id: effect
@@ -134,7 +136,7 @@ ApplicationWindow {
                             {
                                 departureList.model.append(result[i]);
                             }
-                            window.title = 'SailtoVienna - ' + text
+                            activeStation = text
                             show_departureList();
                         });
                     }
@@ -172,6 +174,20 @@ ApplicationWindow {
                         width: 50
                         anchors.left: parent.left
                         text: line.name
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                py.call('gui_departures.deps.filter_line', [activeStation, parent.text], function(result) {
+                                    departureList.model.clear();
+                                    for(var i=0; i<result.length; i++)
+                                    {
+                                        departureList.model.append(result[i]);
+                                    }
+                                    show_departureList();
+                                });
+                            }
+                        }
                     }
                     Text {
                         anchors {
@@ -181,6 +197,20 @@ ApplicationWindow {
                         elide: Text.ElideRight
                         width: parent.width
                         text: line.towards
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                py.call('gui_departures.deps.filter_towards', [activeStation, parent.text], function(result) {
+                                    departureList.model.clear();
+                                    for(var i=0; i<result.length; i++)
+                                    {
+                                        departureList.model.append(result[i]);
+                                    }
+                                    show_departureList();
+                                });
+                            }
+                        }
                     }
                     Text {
                         id: c_countdown
@@ -197,7 +227,7 @@ ApplicationWindow {
     function show_stopList() {
         departureListVisible = false;
         stopListVisible = true;
-        window.title = 'SailtoVienna'
+        activeStation = ''
     }
 
     function show_departureList() {

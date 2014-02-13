@@ -26,4 +26,12 @@ class Deps:
 
         return result_dicts
 
+    def filter_line(self, name, line):
+        deps = self.get(name)
+        return [dep for dep in deps if dep['line']['name'] == line]
+
+    def filter_towards(self, name, towards):
+        deps = self.get(name)
+        return [dep for dep in deps if dep['line']['towards'] == towards]
+
 deps = Deps()
