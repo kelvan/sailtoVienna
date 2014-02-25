@@ -229,6 +229,8 @@ ApplicationWindow {
         departureListVisible = false;
         stopListVisible = true;
         activeStation = '';
+        activeLine = '';
+        activeTowards = '';
         dep_reload_timer.stop();
     }
 
