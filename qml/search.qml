@@ -9,6 +9,8 @@ ApplicationWindow {
     property bool stopListVisible: false
     property bool departureListVisible: false
     property string activeStation: ''
+    property string activeTowards: ''
+    property string activeLine: ''
 
 
     id: window
@@ -130,15 +132,8 @@ ApplicationWindow {
                     anchors.fill: parent
 
                     onClicked: {
-                        py.call('gui_departures.deps.get', [text], function(result) {
-                            departureList.model.clear();
-                            for(var i=0; i<result.length; i++)
-                            {
-                                departureList.model.append(result[i]);
-                            }
-                            activeStation = text
-                            show_departureList();
-                        });
+                        activeStation = parent.text;
+                        load_departures();
                     }
                 }
             }
@@ -178,14 +173,8 @@ ApplicationWindow {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                py.call('gui_departures.deps.filter_line', [activeStation, parent.text], function(result) {
-                                    departureList.model.clear();
-                                    for(var i=0; i<result.length; i++)
-                                    {
-                                        departureList.model.append(result[i]);
-                                    }
-                                    show_departureList();
-                                });
+                                activeLine = parent.text;
+                                load_departures();
                             }
                         }
                     }
@@ -201,14 +190,8 @@ ApplicationWindow {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                py.call('gui_departures.deps.filter_towards', [activeStation, parent.text], function(result) {
-                                    departureList.model.clear();
-                                    for(var i=0; i<result.length; i++)
-                                    {
-                                        departureList.model.append(result[i]);
-                                    }
-                                    show_departureList();
-                                });
+                                activeTowards = parent.text;
+                                load_departures();
                             }
                         }
                     }
@@ -224,14 +207,61 @@ ApplicationWindow {
         }
     }
 
+    Timer {
+        id: dep_reload_timer
+
+        interval: 20000
+        repeat: true
+        triggeredOnStart: false
+
+        onTriggered: {
+            if (activeStation) {
+                console.log('auto-refresh');
+                load_departures();
+            } else {
+                console.log('No active station, cannot autor-refresh');
+                dep_reload_timer.stop();
+            }
+        }
+    }
+
     function show_stopList() {
         departureListVisible = false;
         stopListVisible = true;
-        activeStation = ''
+        activeStation = '';
+        dep_reload_timer.stop();
     }
 
     function show_departureList() {
         stopListVisible = false;
         departureListVisible = true;
+        dep_reload_timer.restart();
+    }
+
+    function fill_departure_list(result) {
+        departureList.model.clear();
+        for(var i=0; i<result.length; i++)
+        {
+            departureList.model.append(result[i]);
+        }
+        show_departureList();
+    }
+
+    function load_departures_towards() {
+        py.call('gui_departures.deps.filter_towards', [activeStation, activeTowards], fill_departure_list);
+    }
+
+    function load_departures_line() {
+        py.call('gui_departures.deps.filter_line', [activeStation, activeLine], fill_departure_list);
+    }
+
+    function load_departures() {
+        if (activeLine) {
+            load_departures_line();
+        } else if(activeTowards) {
+            load_departures_towards();
+        } else {
+            py.call('gui_departures.deps.get', [activeStation], fill_departure_list);
+        }
     }
 }
