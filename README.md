@@ -21,8 +21,8 @@ see pyWL github project for howto import stations and add apikey
 Generic QML2 test gui
 ---------------------
 
-    qmlviewer qml/search.qml # search and departures
+    qmlscene qml/desktop/search.qml # search and departures
 
 or
 
-    qmlviewer qml/stations.qml # stations of line
+    qmlscene qml/desktop/stations.qml # stations of line
