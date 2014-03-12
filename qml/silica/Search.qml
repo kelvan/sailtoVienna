@@ -30,7 +30,7 @@ Page {
 
             anchors.top: header.bottom
 
-            onTextChanged: py.call('gui_search.stops.get', [text], function(result) { //FIXME timer
+            onTextChanged: py.call('glue.gui_search.stops.get', [text], function(result) { //FIXME timer
     searchList.model = result;  
 })
         }

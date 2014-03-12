@@ -97,7 +97,7 @@ Page {
     function refresh() {
         if(!refreshing) {
             refreshing = true
-            py.call('gui_departures.deps.get', 
+            py.call('glue.gui_departures.deps.get', 
                 [station], function(result) {
                     departureList.model = result;
                     refreshing = false
