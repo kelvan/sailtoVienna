@@ -73,9 +73,15 @@ Page {
                 anchors.margins: Theme.paddingLarge
 
                 Label {
-                    width: parent.width * 0.25
+                    width: parent.width * 0.25 - image.width
                     anchors.verticalCenter: parent.verticalCenter
                     text: modelData.line.name
+                }
+
+                Image {
+                    id: image
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: modelData.line.barrierFree ? Qt.resolvedUrl('wheelchair.png') : ''
                 }
 
                 Label {
