@@ -79,7 +79,13 @@ Page {
                 }
 
                 Label {
-                    width: parent.width * 0.75
+                    width: parent.width * 0.5
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: modelData.line.towards
+                }
+
+                Label {
+                    width: parent.width * 0.25
                     anchors.verticalCenter: parent.verticalCenter
                     horizontalAlignment: Text.AlignRight
                     text: modelData.countdown
