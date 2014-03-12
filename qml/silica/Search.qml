@@ -73,7 +73,7 @@ Page {
                         verticalCenter: parent.verticalCenter
                         margins: Theme.paddingLarge
                     }
-                    text: modelData
+                    text: Theme.highlightText(modelData, searchInput.text, Theme.highlightColor)
                 }
 
                 onClicked: pageStack.push(Qt.resolvedUrl("Result.qml"), {station: modelData})
