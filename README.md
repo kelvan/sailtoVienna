@@ -26,3 +26,14 @@ Generic QML2 test gui
 or
 
     qmlscene qml/desktop/stations.qml # stations of line
+
+Silica QML2 gui
+--------------
+
+    rsync -Cav . root@jolla:/usr/share/sailtoVienna --exclude qml
+    rsync -Cav qml/silica/ root@jolla:/usr/share/sailtoVienna/qml
+    sailfish-qml sailtoVienna #on device
+
+or
+
+    cp data/sailtoVienna.desktop /usr/share/applications #on device and then use the launcher
