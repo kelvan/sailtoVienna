@@ -1,7 +1,7 @@
 from operator import itemgetter
 
-from realtime import Departures
-from database import Station
+from pyWL.realtime import Departures
+from pyWL.database import Station
 
 
 class Deps:
