@@ -36,4 +36,4 @@ Silica QML2 gui
 
 or
 
-    cp data/sailtoVienna.desktop /usr/share/applications #on device and then use the launcher
+    cp data/sailtoVienna.desktop.sailfish /usr/share/applications/sailtoVienna.desktop #on device and then use the launcher
