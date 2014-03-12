@@ -4,6 +4,8 @@ import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.2
 
 ApplicationWindow {
+    id: appWindow
+    cover: Qt.resolvedUrl('CoverContainer.qml')
 
     Python {
         id: py
@@ -53,5 +55,9 @@ ApplicationWindow {
                 title: "History"
             }
         }
+    }
+
+    Result {
+        id: resultPage
     }
 }

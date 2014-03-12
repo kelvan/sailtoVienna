@@ -16,8 +16,8 @@ Page {
                 label: "Search for"
 
                 menu: ContextMenu {
-                    MenuItem { text: "Line" }
                     MenuItem { text: "Station" }
+                    MenuItem { text: "Line" }
                 }
             }
 
@@ -30,6 +30,15 @@ Page {
                     MenuItem { text: "30 sec" }
                     MenuItem { text: "1 min" }
                     MenuItem { text: "2 min" }
+                }
+            }
+            
+            ComboBox {
+                label: "Result view cover action"
+
+                menu: ContextMenu {
+                    MenuItem { text: "Search" }
+                    MenuItem { text: "Nearby" }
                 }
             }
         }

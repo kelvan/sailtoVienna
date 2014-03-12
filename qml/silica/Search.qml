@@ -76,7 +76,7 @@ Page {
                     text: Theme.highlightText(modelData, searchInput.text, Theme.highlightColor)
                 }
 
-                onClicked: pageStack.push(Qt.resolvedUrl("Result.qml"), {station: modelData})
+                onClicked: pageStack.push(resultPage, {station: modelData})
 
                 Component {
                     id: contextMenu

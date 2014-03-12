@@ -4,7 +4,14 @@ import Sailfish.Silica 1.0
 Page {
     property string station
     property bool refreshing: false
-    
+    property var resultList: ListModel {}
+
+    onStatusChanged: {
+        if (status === PageStatus.Activating) {
+            refresh()
+        }
+    }
+
     SilicaListView {
         id: departureList
         anchors.fill: parent
@@ -62,7 +69,7 @@ Page {
             text: "No departures found"
         }
             
-        model: ListModel {}
+        model: resultList
 
         delegate: ListItem {
             width: parent.width
@@ -105,11 +112,9 @@ Page {
             refreshing = true
             py.call('glue.gui_departures.deps.get', 
                 [station], function(result) {
-                    departureList.model = result;
+                    resultList = result;
                     refreshing = false
             });
         }
     }
-
-    Component.onCompleted: refresh()
 }
