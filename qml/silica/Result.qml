@@ -8,6 +8,7 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Activating) {
+            resultList.clear()
             refresh()
         }
     }
