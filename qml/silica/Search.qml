@@ -5,6 +5,17 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
 
+        Timer {
+            id: searchDelay
+            interval: 500
+            running: false
+            repeat: false
+
+            onTriggered: py.call('glue.gui_search.stops.get', [searchInput.text], function(result) {
+                searchList.model = result;  
+            });
+        }
+
         PullDownMenu {
             MenuItem {
                 text: "Settings"
@@ -30,9 +41,7 @@ Page {
 
             anchors.top: header.bottom
 
-            onTextChanged: py.call('glue.gui_search.stops.get', [text], function(result) { //FIXME timer
-    searchList.model = result;  
-})
+            onTextChanged: if(text.length > 2) searchDelay.restart()
         }
 
         SilicaListView {
