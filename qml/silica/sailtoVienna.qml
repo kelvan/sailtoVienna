@@ -9,12 +9,8 @@ ApplicationWindow {
         id: py
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('../'));
-            importModule('glue.gui_search', function () {
-                console.log('imported python module');
-            });
-            importModule('glue.gui_departures', function () {
-                console.log('imported python module');
-            });
+            importModule('glue.gui_search', null);
+            importModule('glue.gui_departures', null);
         }
     }
 
