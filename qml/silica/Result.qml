@@ -1,6 +1,7 @@
 import QtQuick 2.0
-import QtQuick.LocalStorage 2.0
 import Sailfish.Silica 1.0
+
+import "db.js" as Db
 
 Page {
     property string station
@@ -9,7 +10,7 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Activating) {
-            var db = LocalStorage.openDatabaseSync("sailtoVienna", "1", "sailtoVienna settings and recent", 1000)
+            var db = Db.open()
             db.transaction(function(tx) {
                 appWindow.recent.insert(0, { station: station });
                 if(appWindow.recent.count > 5)

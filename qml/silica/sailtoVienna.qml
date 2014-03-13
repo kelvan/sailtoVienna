@@ -1,8 +1,9 @@
 import QtQuick 2.0
-import QtQuick.LocalStorage 2.0
 import Sailfish.Silica 1.0
 
 import io.thp.pyotherside 1.2
+
+import "db.js" as Db
 
 ApplicationWindow {
     id: appWindow
@@ -10,7 +11,7 @@ ApplicationWindow {
     property var recent: ListModel {}
 
     function loadRecent() {
-        var db = LocalStorage.openDatabaseSync("sailtoVienna", "1", "sailtoVienna settings and recent", 1000)
+        var db = Db.open()
         db.transaction(function(tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS recent(station TEXT, date INTEGER)')
         })
@@ -24,7 +25,7 @@ ApplicationWindow {
     }
 
     function clearRecent() {
-        var db = LocalStorage.openDatabaseSync("sailtoVienna", "1", "sailtoVienna settings and recent", 1000)
+        var db = Db.open()
         db.transaction(function(tx) {
             tx.executeSql('DELETE FROM recent')
             recent.clear()
