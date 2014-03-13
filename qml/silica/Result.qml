@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.LocalStorage 2.0
 import Sailfish.Silica 1.0
 
 Page {
@@ -8,6 +9,13 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Activating) {
+            var db = LocalStorage.openDatabaseSync("sailtoVienna", "1", "sailtoVienna settings and recent", 1000)
+            db.transaction(function(tx) {
+                appWindow.recent.insert(0, { station: station });
+                if(appWindow.recent.count > 5)
+                    appWindow.recent.remove(5, appWindow.recent.count - 5);
+                tx.executeSql('INSERT INTO recent (station, date) VALUES (?, ?)', [station, +new Date]);
+            })
             resultList.clear()
             refresh()
         }
@@ -43,6 +51,7 @@ Page {
                 height: Theme.itemSizeMedium
 
                 Label {
+                    width: parent.width
                     anchors {
                         left: parent.left
                         margins: Theme.paddingLarge
@@ -113,7 +122,10 @@ Page {
             refreshing = true
             py.call('glue.gui_departures.deps.get', 
                 [station], function(result) {
-                    resultList = result;
+                    if(result)
+                        resultList = result
+                    else
+                        resultList.clear()
                     refreshing = false
             });
         }
