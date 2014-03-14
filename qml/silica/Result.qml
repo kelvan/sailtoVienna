@@ -26,6 +26,8 @@ Page {
         id: departureList
         anchors.fill: parent
 
+        VerticalScrollDecorator {}
+
         PullDownMenu {
             busy: refreshing
 
