@@ -93,26 +93,26 @@ Page {
                 Label {
                     width: parent.width * 0.25 - image.width
                     anchors.verticalCenter: parent.verticalCenter
-                    text: modelData.line.name
+                    text: model.line.name
                 }
 
                 Image {
                     id: image
                     anchors.verticalCenter: parent.verticalCenter
-                    source: modelData.line.barrierFree ? Qt.resolvedUrl('wheelchair.png') : ''
+                    source: model.line.barrierFree ? Qt.resolvedUrl('wheelchair.png') : ''
                 }
 
                 Label {
                     width: parent.width * 0.5
                     anchors.verticalCenter: parent.verticalCenter
-                    text: modelData.line.towards
+                    text: model.line.towards
                 }
 
                 Label {
                     width: parent.width * 0.25
                     anchors.verticalCenter: parent.verticalCenter
                     horizontalAlignment: Text.AlignRight
-                    text: modelData.countdown
+                    text: model.countdown
                 }
             }
         }
@@ -123,10 +123,11 @@ Page {
             refreshing = true
             py.call('glue.gui_departures.deps.get', 
                 [station], function(result) {
+                    resultList.clear()
                     if(result)
-                        resultList = result
-                    else
-                        resultList.clear()
+                        result.forEach(function(entry) {
+                            resultList.append(entry)
+                        })
                     refreshing = false
             });
         }

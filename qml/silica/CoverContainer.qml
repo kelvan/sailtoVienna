@@ -38,14 +38,14 @@ CoverBackground {
                         id: lineText
                         width: parent.width * 0.2
                         anchors.verticalCenter: parent.verticalCenter
-                        text: modelData.line.name
+                        text: model.line.name
                         font.pixelSize: Theme.fontSizeTiny
                     }
 
                     Label {
                         width: parent.width * 0.55
                         anchors.verticalCenter: parent.verticalCenter
-                        text: modelData.line.towards
+                        text: model.line.towards
                         font.pixelSize: Theme.fontSizeTiny
                     }
 
@@ -53,7 +53,7 @@ CoverBackground {
                         width: parent.width * 0.25
                         anchors.verticalCenter: parent.verticalCenter
                         horizontalAlignment: Text.AlignRight
-                        text: modelData.countdown
+                        text: model.countdown
                         font.pixelSize: Theme.fontSizeTiny
                     }
                 }
