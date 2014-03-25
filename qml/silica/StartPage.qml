@@ -32,7 +32,7 @@ Page {
                 text: qsTrId("clearrecent")
                 onClicked: clearRecent()
             }
-        }   
+        }
 
         PageHeader {
             id: favHeader
@@ -45,7 +45,7 @@ Page {
             //% "Recent"
             title: qsTrId("recent")
         }
-        
+
         Column {
             anchors.top: recentHeader.bottom
             width: parent.width

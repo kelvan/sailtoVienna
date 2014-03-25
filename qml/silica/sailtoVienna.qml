@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtPositioning 5.2
 import Sailfish.Silica 1.0
 
 import io.thp.pyotherside 1.2
@@ -9,6 +10,27 @@ ApplicationWindow {
     id: appWindow
     cover: Qt.resolvedUrl('CoverContainer.qml')
     property var recent: ListModel {}
+    property var nearbyModel: ListModel {}
+    property int py_loaded: 0
+    property bool py_completed: py_loaded == 2
+
+    property var coordinate
+    PositionSource {
+        id: positionSource
+        onPositionChanged: {
+            if(py_completed) {
+                coordinate = position.coordinate;
+                py.call('glue.gui_search.stops.get_nearby', [coordinate.latitude, coordinate.longitude], function(result) {
+                    nearbyModel.clear();
+                    if(result.length > 0) {
+                        result.forEach(function(entry) {
+                            nearbyModel.append(entry);
+                        });
+                    }
+                });
+            }
+        }
+    }
 
     function loadRecent() {
         var db = Db.open()
@@ -38,8 +60,8 @@ ApplicationWindow {
         id: py
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('../'));
-            importModule('glue.gui_search', null);
-            importModule('glue.gui_departures', null);
+            importModule('glue.gui_search', function() {py_loaded++});
+            importModule('glue.gui_departures', function() {py_loaded++});
         }
     }
 

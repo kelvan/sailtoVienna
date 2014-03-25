@@ -12,7 +12,7 @@ Page {
             repeat: false
 
             onTriggered: py.call('glue.gui_search.stops.get', [searchInput.text], function(result) {
-                searchList.model = result;  
+                searchList.model = result;
             });
         }
 
@@ -49,7 +49,7 @@ Page {
             anchors.top: searchInput.bottom
             anchors.bottom: parent.bottom
             width: parent.width
-            clip: true           
+            clip: true
 
             VerticalScrollDecorator {}
 
