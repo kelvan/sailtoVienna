@@ -14,5 +14,20 @@
         <oldsource>In der Nähe</oldsource>
         <translation type="unfinished">In der Nähe</translation>
     </message>
+    <message id="clearrecent">
+        <location filename="../qml/StartPage.qml" line="32"/>
+        <source>Clear recent</source>
+        <translation type="unfinished">Verlauf</translation>
+    </message>
+    <message id="bookmarks">
+        <location filename="../qml/StartPage.qml" line="40"/>
+        <source>Bookmarks</source>
+        <translation type="unfinished">Lesezeichen</translation>
+    </message>
+    <message id="recent">
+        <location filename="../qml/StartPage.qml" line="46"/>
+        <source>Recent</source>
+        <translation type="unfinished">Verlauf leeren</translation>
+    </message>
 </context>
 </TS>

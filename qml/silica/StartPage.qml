@@ -28,19 +28,22 @@ Page {
             visible: appWindow.recent.count
 
             MenuItem {
-                text: "Clear recent"
+                //% "Clear recent"
+                text: qsTrId("clearrecent")
                 onClicked: clearRecent()
             }
         }   
 
         PageHeader {
             id: favHeader
-            title: "Favourites"
+            //% "Bookmarks"
+            title: qsTrId("bookmarks")
         }
         PageHeader {
             id: recentHeader
             anchors.top: favHeader.bottom
-            title: "Recent"
+            //% "Recent"
+            title: qsTrId("recent")
         }
         
         Column {
