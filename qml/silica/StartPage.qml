@@ -13,11 +13,13 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: "Settings"
+                //% "Settings"
+                text: qsTrId("settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
             }
             MenuItem {
-                text: "Nearby"
+                //% "Nearby"
+                text: qsTrId("nearby")
                 onClicked: pageStack.push(Qt.resolvedUrl("NearBy.qml"))
             }
         }
