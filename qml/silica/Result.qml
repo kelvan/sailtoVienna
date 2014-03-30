@@ -63,16 +63,16 @@ Page {
 
                     text: station
                     color: Theme.highlightColor
-                    font.pixelSize: Theme.fontSizeLarge 
+                    font.pixelSize: Theme.fontSizeLarge
                 }
-            
+
                 BusyIndicator {
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
                         margins: Theme.paddingLarge
                     }
-                    running: refreshing 
+                    running: refreshing
                 }
             }
         }
@@ -81,7 +81,7 @@ Page {
             enabled: departureList.count == 0 && !refreshing
             text: "No departures found"
         }
-            
+
         model: resultList
 
         delegate: ListItem {
@@ -105,13 +105,14 @@ Page {
                 }
 
                 Label {
-                    width: parent.width * 0.5
+                    width: parent.width * 0.6
                     anchors.verticalCenter: parent.verticalCenter
                     text: model.line.towards
+                    truncationMode: TruncationMode.Fade
                 }
 
                 Label {
-                    width: parent.width * 0.25
+                    width: parent.width * 0.15
                     anchors.verticalCenter: parent.verticalCenter
                     horizontalAlignment: Text.AlignRight
                     text: model.countdown
@@ -123,7 +124,7 @@ Page {
     function refresh() {
         if(!refreshing) {
             refreshing = true
-            py.call('glue.gui_departures.deps.get', 
+            py.call('glue.gui_departures.deps.get',
                 [station], function(result) {
                     resultList.clear()
                     if(result)
