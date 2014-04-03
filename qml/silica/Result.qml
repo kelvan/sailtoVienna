@@ -60,7 +60,7 @@ Page {
                 height: Theme.itemSizeMedium
 
                 Label {
-                    width: parent.width
+                    width: parent.width-busy.width
                     anchors {
                         left: parent.left
                         margins: Theme.paddingLarge
@@ -70,9 +70,11 @@ Page {
                     text: station
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeLarge
+                    truncationMode: TruncationMode.Fade
                 }
 
                 BusyIndicator {
+                    id: busy
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
