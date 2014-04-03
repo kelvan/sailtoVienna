@@ -12,6 +12,12 @@ Page {
         if (status === PageStatus.Activating) {
             var db = Db.open()
             db.transaction(function(tx) {
+                for(var i=0; i<appWindow.recent.count; i++) {
+                    if(appWindow.recent.get(i).station == station) {
+                        appWindow.recent.remove(i);
+                    }
+                }
+                tx.executeSql('DELETE FROM recent WHERE station==?', station);
                 appWindow.recent.insert(0, { station: station });
                 if(appWindow.recent.count > 5)
                     appWindow.recent.remove(5, appWindow.recent.count - 5);
