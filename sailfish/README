@@ -1,0 +1,5 @@
+To build in Mer SDK, use:
+
+  mb2 build
+
+The RPMs will end up in the RPMS/ subdirectory.
