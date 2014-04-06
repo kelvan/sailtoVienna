@@ -38,11 +38,15 @@ Page {
             busy: refreshing
 
             MenuItem {
-                text: "Add to favourites" //FIXME already fav?/save fav?
+                //% "Add to favourites"
+                text: qsTrId("add-to-favourites") //FIXME already fav?/save fav?
             }
 
             MenuItem {
-                text: refreshing ? "Refreshing..." : "Refresh"
+                //% "Refreshing..."
+                text: refreshing ? qsTrId("refreshing...") :
+                //% "Refresh"
+                qsTrId("refresh")
                 enabled: !refreshing
                 onClicked: refresh()
             }
@@ -52,7 +56,8 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: "Result"
+                //% "Result"
+                title: qsTrId("result")
             }
 
             Item {
@@ -87,7 +92,8 @@ Page {
 
         ViewPlaceholder {
             enabled: departureList.count == 0 && !refreshing
-            text: "No departures found"
+            //% "No departures found"
+            text: qsTrId("no-departures-found")
         }
 
         model: resultList

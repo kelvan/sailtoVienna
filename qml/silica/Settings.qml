@@ -8,37 +8,50 @@ Page {
         Column {
             width: parent.width
             PageHeader {
-                title: "Settings"
+                //% "Settings"
+                title: qsTrId("settings")
             }
 
 
             ComboBox {
-                label: "Search for"
+                //% "Search for"
+                label: qsTrId("search-for")
 
                 menu: ContextMenu {
-                    MenuItem { text: "Station" }
-                    MenuItem { text: "Line" }
+                    //% "Station"
+                    MenuItem { text: qsTrId("station") }
+                    //% "Line"
+                    MenuItem { text: qsTrId("line") }
                 }
             }
 
             ComboBox {
-                label: "Automatic refresh"
+                //% "Automatic refresh"
+                label: qsTrId("automatic-refresh")
 
                 menu: ContextMenu {
-                    MenuItem { text: "Off" }
-                    MenuItem { text: "15 sec" }
-                    MenuItem { text: "30 sec" }
-                    MenuItem { text: "1 min" }
-                    MenuItem { text: "2 min" }
+                    //% "Off"
+                    MenuItem { text: qsTrId("off") }
+                    //% "15 sec"
+                    MenuItem { text: qsTrId("15-sec") }
+                    //% "30 sec"
+                    MenuItem { text: qsTrId("30-sec") }
+                    //% "1 min
+                    MenuItem { text: qsTrId("1-min") }
+                    //% "2 min
+                    MenuItem { text: qsTrId("2-min") }
                 }
             }
             
             ComboBox {
-                label: "Result view cover action"
+                //% "Result view cover action"
+                label: qsTrId("result-view-cover-action")
 
                 menu: ContextMenu {
-                    MenuItem { text: "Search" }
-                    MenuItem { text: "Nearby" }
+                    //% "Search"
+                    MenuItem { text: qsTrId("search") }
+                    //% "Nearby"
+                    MenuItem { text: qsTrId("nearby") }
                 }
             }
         }

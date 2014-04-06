@@ -18,26 +18,30 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: "Settings"
+                //% "Settings"
+                text: qsTrId("settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
             }
 
             MenuItem {
-                text: "Near By"
+                //% "Nearby"
+                text: qsTrId("nearby")
                 onClicked: pageStack.replace(Qt.resolvedUrl("NearBy.qml"))
             }
         }
 
         PageHeader {
             id: header
-            title: "Search"
+            //% "Search"
+            title: qsTrId("search")
         }
 
         TextField {
             id: searchInput
             width: parent.width
-            placeholderText: "Station"
-            label: "Station"
+            //% "Station"
+            placeholderText: qsTrId("station")
+            label: qsTrId("station")
 
             anchors.top: header.bottom
 
@@ -55,7 +59,8 @@ Page {
 
             ViewPlaceholder {
                 enabled: searchList.count == 0
-                text: "Search stations"
+                //% "Search stations"
+                text: qsTrId("search-stations")
                 anchors.top: parent.top
             }
 
@@ -83,7 +88,8 @@ Page {
 
                     ContextMenu {
                         MenuItem {
-                            text: "Add to favourites" //FIXME do add / remove
+                            //% "Add to favourites"
+                            text: qsTrId("add-to-favourites") //FIXME do add / remove
                         }
                     }
                 }
