@@ -2,4 +2,5 @@
 Type=Application
 X-Nemo-Application-Type=silica-qt5
 Name=sailtoVienna
-Exec=sailfish-qml sailtoVienna
+Icon=harbour-sailtovienna
+Exec=sailfish-qml harbour-sailtovienna
