@@ -18,7 +18,8 @@ CoverBackground {
                 left: parent.left
                 margins: Theme.paddingSmall
             }
-            text: resultPage.refreshing ? "Refreshing..." : resultPage.station
+            //% "Refreshing..."
+            text: resultPage.refreshing ? qsTrId("refreshing...") : resultPage.station
             color: Theme.highlightColor
             font.pixelSize: Theme.fontSizeTiny
         }

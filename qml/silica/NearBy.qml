@@ -22,18 +22,21 @@ Page {
             anchors.fill: parent
             PullDownMenu {
                 MenuItem {
-                    text: "Settings"
+                    //% "Settings"
+                    text: qsTrId("settings")
                     onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
                 }
                 MenuItem {
-                    text: "Search"
+                    //% "Search"
+                    text: qsTrId("search")
                     onClicked: pageStack.replace(Qt.resolvedUrl("Search.qml"))
                 }
             }
 
             PageHeader {
                 id: header
-                title: "Near By"
+                //% "Nearby"
+                title: qsTrId("nearby")
             }
 
             SilicaListView {
@@ -47,7 +50,8 @@ Page {
 
                 ViewPlaceholder {
                     enabled: nearbyList.count == 0
-                    text: "Looking for stations"
+                    //% "Looking for stations"
+                    text: qsTrId("looking-for-stations")
                     anchors.top: parent.top
                 }
 
@@ -75,7 +79,8 @@ Page {
 
                         ContextMenu {
                             MenuItem {
-                                text: "Add to favourites" //FIXME do add / remove
+                                //% "Add to favourites"
+                                text: qsTrId("add-to-favourites") //FIXME do add / remove
                             }
                         }
                     }

@@ -9,6 +9,12 @@ function open() {
 function addRecent(appWindow, station) {
     var db = open()
     db.transaction(function(tx) {
+        for(var i=0; i<appWindow.recent.count; i++) {
+            if(appWindow.recent.get(i).station == station) {
+                appWindow.recent.remove(i);
+            }
+        }
+        tx.executeSql('DELETE FROM recent WHERE station==?', station);
         appWindow.recent.insert(0, { station: station });
         if(appWindow.recent.count > limit)
             appWindow.recent.remove(limit, appWindow.recent.count - limit);
