@@ -33,17 +33,11 @@ ApplicationWindow {
     }
 
     function loadRecent() {
-        var db = Db.open()
-        db.transaction(function(tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS recent(station TEXT, date INTEGER)')
-        })
-
-        db.readTransaction(function(tx) {
-            var result = tx.executeSql('SELECT station FROM recent ORDER BY date DESC LIMIT 5')
+        Db.loadRecent(function insert(result) {
             for(var i = 0; i < result.rows.length; i++) {
-                recent.append({ station: result.rows.item(i).station })
+                recent.append({ station: result.rows.item(i).station });
             }
-        })
+        });
     }
 
     function clearRecent() {

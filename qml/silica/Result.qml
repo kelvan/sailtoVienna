@@ -10,13 +10,7 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Activating) {
-            var db = Db.open()
-            db.transaction(function(tx) {
-                appWindow.recent.insert(0, { station: station });
-                if(appWindow.recent.count > 5)
-                    appWindow.recent.remove(5, appWindow.recent.count - 5);
-                tx.executeSql('INSERT INTO recent (station, date) VALUES (?, ?)', [station, +new Date]);
-            })
+            Db.addRecent(appWindow, station);
             resultList.clear()
             refresh()
         }
