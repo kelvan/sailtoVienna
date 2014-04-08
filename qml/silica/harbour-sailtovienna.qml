@@ -10,6 +10,7 @@ ApplicationWindow {
     id: appWindow
     cover: Qt.resolvedUrl('CoverContainer.qml')
     property var recent: ListModel {}
+    property var favorites: ListModel {}
     property var nearbyModel: ListModel {}
     property int py_loaded: 0
     property bool py_completed: py_loaded == 2
@@ -32,6 +33,17 @@ ApplicationWindow {
         }
     }
 
+    function loadFavorites() {
+        console.log('load favorites');
+        Db.getFavorites(function insert(result) {
+            console.log('load favorites');
+            for(var i = 0; i < result.rows.length; i++) {
+                console.log(result.rows.item(i).station);
+                favorites.append({ station: result.rows.item(i).station });
+            }
+        });
+    }
+
     function loadRecent() {
         Db.loadRecent(function insert(result) {
             for(var i = 0; i < result.rows.length; i++) {
@@ -48,7 +60,11 @@ ApplicationWindow {
         })
     }
 
-    Component.onCompleted: loadRecent()
+    Component.onCompleted: {
+        console.log('completed');
+        loadFavorites();
+        loadRecent();
+    }
 
     Python {
         id: py

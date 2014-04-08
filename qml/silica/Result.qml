@@ -11,8 +11,18 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Activating) {
             Db.addRecent(appWindow, station);
-            resultList.clear()
-            refresh()
+            Db.isFavorite(station, function callback(isFav) {
+                favoriteItem.isFavorite = isFav;
+                if(isFav) {
+                    //% "Remove from favourites"
+                    favoriteItem.text = qsTrId("remove-from-favourites")
+                } else {
+                    //% "Add to favourites"
+                    favoriteItem.text = qsTrId("add-to-favourites")
+                }
+            });
+            resultList.clear();
+            refresh();
         }
     }
 
@@ -26,8 +36,25 @@ Page {
             busy: refreshing
 
             MenuItem {
+                id: favoriteItem
+                property bool isFavorite
                 //% "Add to favourites"
-                text: qsTrId("add-to-favourites") //FIXME already fav?/save fav?
+                text: qsTrId("add-to-favourites")
+                onClicked: {
+                    if(isFavorite) {
+                        Db.removeFavorite(station, function callback(){
+                            //% "Add to favourites"
+                            text = qsTrId("add-to-favourites")
+                            isFavorite = false;
+                        });
+                    } else {
+                        Db.addFavorite(station, function callback(){
+                            //% "Remove from favourites"
+                            text = qsTrId("remove-from-favourites")
+                            isFavorite = true;
+                        });
+                    }
+                }
             }
 
             MenuItem {

@@ -39,9 +39,31 @@ Page {
             //% "Bookmarks"
             title: qsTrId("bookmarks")
         }
+        Column {
+            id: favList
+            anchors.top: favHeader.bottom
+            width: parent.width
+            Repeater {
+                model: appWindow.favorites
+
+                ListItem {
+                    contentHeight: Theme.itemSizeMedium
+                    onClicked: pageStack.push(resultPage, {station: model.station})
+
+                    Label {
+                        anchors {
+                            left: parent.left
+                            verticalCenter: parent.verticalCenter
+                            margins: Theme.paddingLarge
+                        }
+                        text: model.station
+                    }
+                }
+            }
+        }
         PageHeader {
             id: recentHeader
-            anchors.top: favHeader.bottom
+            anchors.top: favList.bottom
             //% "Recent"
             title: qsTrId("recent")
         }
