@@ -119,7 +119,7 @@
     <message id="refresh">
         <location filename="../qml/Result.qml" line="49"/>
         <source>Refresh</source>
-        <translation>Aktualisiere</translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message id="result">
         <location filename="../qml/Result.qml" line="60"/>
