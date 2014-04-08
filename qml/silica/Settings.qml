@@ -36,9 +36,9 @@ Page {
                     MenuItem { text: qsTrId("15-sec") }
                     //% "30 sec"
                     MenuItem { text: qsTrId("30-sec") }
-                    //% "1 min
+                    //% "1 min"
                     MenuItem { text: qsTrId("1-min") }
-                    //% "2 min
+                    //% "2 min"
                     MenuItem { text: qsTrId("2-min") }
                 }
             }
