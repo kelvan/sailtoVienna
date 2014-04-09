@@ -61,13 +61,22 @@ Page {
 
                     menu: contextMenu
 
-                    Label {
-                        anchors {
-                            left: parent.left
-                            verticalCenter: parent.verticalCenter
-                            margins: Theme.paddingLarge
+                    Row {
+                        anchors.fill: parent
+                        anchors.margins: Theme.paddingLarge
+
+                        Label {
+                            width: parent.width * 0.25
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: model.distance + " km"
                         }
-                        text: model.name
+
+                        Label {
+                            width: parent.width * 0.75
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: model.name
+                            truncationMode: TruncationMode.Fade
+                        }
                     }
 
                     onClicked: pageStack.push(resultPage, {station: model.name})
