@@ -4,7 +4,7 @@
 <context>
     <name></name>
     <message id="settings">
-        <location filename="../qml/NearBy.qml" line="26"/>
+        <location filename="../qml/NearBy.qml" line="24"/>
         <location filename="../qml/Search.qml" line="22"/>
         <location filename="../qml/Settings.qml" line="12"/>
         <location filename="../qml/StartPage.qml" line="17"/>
@@ -12,14 +12,14 @@
         <translation>Einstellungen</translation>
     </message>
     <message id="search">
-        <location filename="../qml/NearBy.qml" line="31"/>
+        <location filename="../qml/NearBy.qml" line="29"/>
         <location filename="../qml/Search.qml" line="36"/>
         <location filename="../qml/Settings.qml" line="52"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message id="nearby">
-        <location filename="../qml/NearBy.qml" line="39"/>
+        <location filename="../qml/NearBy.qml" line="37"/>
         <location filename="../qml/Search.qml" line="28"/>
         <location filename="../qml/Settings.qml" line="54"/>
         <location filename="../qml/StartPage.qml" line="22"/>
@@ -27,13 +27,20 @@
         <translation>In der Nähe</translation>
     </message>
     <message id="looking-for-stations">
-        <location filename="../qml/NearBy.qml" line="54"/>
+        <location filename="../qml/NearBy.qml" line="52"/>
         <source>Looking for stations</source>
         <translation>Suche nach Stationen</translation>
     </message>
+    <message id="km">
+        <location filename="../qml/NearBy.qml" line="72"/>
+        <source>km</source>
+        <translation>km</translation>
+    </message>
     <message id="add-to-favourites">
-        <location filename="../qml/NearBy.qml" line="83"/>
+        <location filename="../qml/NearBy.qml" line="91"/>
+        <location filename="../qml/Result.qml" line="21"/>
         <location filename="../qml/Result.qml" line="42"/>
+        <location filename="../qml/Result.qml" line="47"/>
         <location filename="../qml/Search.qml" line="92"/>
         <source>Add to favourites</source>
         <translation>Zu Favouriten hinzufügen</translation>
@@ -49,7 +56,7 @@
         <translation>Lesezeichen</translation>
     </message>
     <message id="recent">
-        <location filename="../qml/StartPage.qml" line="46"/>
+        <location filename="../qml/StartPage.qml" line="68"/>
         <source>Recent</source>
         <translation>Verlauf</translation>
     </message>
@@ -112,22 +119,28 @@
     </message>
     <message id="refreshing...">
         <location filename="../qml/CoverContainer.qml" line="22"/>
-        <location filename="../qml/Result.qml" line="47"/>
+        <location filename="../qml/Result.qml" line="62"/>
         <source>Refreshing...</source>
         <translation>Aktualisiert...</translation>
     </message>
+    <message id="remove-from-favourites">
+        <location filename="../qml/Result.qml" line="18"/>
+        <location filename="../qml/Result.qml" line="53"/>
+        <source>Remove from favourites</source>
+        <translation>Aus Favoriten entfernen</translation>
+    </message>
     <message id="refresh">
-        <location filename="../qml/Result.qml" line="49"/>
+        <location filename="../qml/Result.qml" line="64"/>
         <source>Refresh</source>
         <translation>Aktualisieren</translation>
     </message>
     <message id="result">
-        <location filename="../qml/Result.qml" line="60"/>
+        <location filename="../qml/Result.qml" line="75"/>
         <source>Result</source>
         <translation>Ergebnis</translation>
     </message>
     <message id="no-departures-found">
-        <location filename="../qml/Result.qml" line="96"/>
+        <location filename="../qml/Result.qml" line="111"/>
         <source>No departures found</source>
         <translation>Keine Abfahrten gefunden</translation>
     </message>
