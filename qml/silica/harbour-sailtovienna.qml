@@ -34,9 +34,7 @@ ApplicationWindow {
     }
 
     function loadFavorites() {
-        console.log('load favorites');
         Db.getFavorites(function insert(result) {
-            console.log('load favorites');
             for(var i = 0; i < result.rows.length; i++) {
                 console.log(result.rows.item(i).station);
                 favorites.append({ station: result.rows.item(i).station });
@@ -61,7 +59,6 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        console.log('completed');
         loadFavorites();
         loadRecent();
     }

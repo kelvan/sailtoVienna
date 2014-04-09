@@ -8,10 +8,8 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Active) {
-            console.log('NearBy get active status');
             positionSource.updateInterval = 2000;
         } else if (status === PageStatus.Deactivating) {
-            console.log('NearBy lost active status');
             positionSource.updateInterval = 10000;
         }
     }
