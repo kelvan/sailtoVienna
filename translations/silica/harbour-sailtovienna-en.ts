@@ -38,9 +38,7 @@
     </message>
     <message id="add-to-favourites">
         <location filename="../qml/NearBy.qml" line="91"/>
-        <location filename="../qml/Result.qml" line="21"/>
-        <location filename="../qml/Result.qml" line="42"/>
-        <location filename="../qml/Result.qml" line="47"/>
+        <location filename="../qml/Result.qml" line="37"/>
         <location filename="../qml/Search.qml" line="92"/>
         <source>Add to favourites</source>
         <translation>Add to favourites</translation>
@@ -119,28 +117,27 @@
     </message>
     <message id="refreshing...">
         <location filename="../qml/CoverContainer.qml" line="22"/>
-        <location filename="../qml/Result.qml" line="62"/>
+        <location filename="../qml/Result.qml" line="53"/>
         <source>Refreshing...</source>
         <translation>Refreshing...</translation>
     </message>
     <message id="remove-from-favourites">
-        <location filename="../qml/Result.qml" line="18"/>
-        <location filename="../qml/Result.qml" line="53"/>
+        <location filename="../qml/Result.qml" line="35"/>
         <source>Remove from favourites</source>
         <translation>Remove from favourites</translation>
     </message>
     <message id="refresh">
-        <location filename="../qml/Result.qml" line="64"/>
+        <location filename="../qml/Result.qml" line="55"/>
         <source>Refresh</source>
         <translation>Refresh</translation>
     </message>
     <message id="result">
-        <location filename="../qml/Result.qml" line="75"/>
+        <location filename="../qml/Result.qml" line="66"/>
         <source>Result</source>
         <translation>Result</translation>
     </message>
     <message id="no-departures-found">
-        <location filename="../qml/Result.qml" line="111"/>
+        <location filename="../qml/Result.qml" line="102"/>
         <source>No departures found</source>
         <translation>No departures found</translation>
     </message>
