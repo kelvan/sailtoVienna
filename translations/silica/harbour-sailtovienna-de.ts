@@ -41,7 +41,7 @@
         <location filename="../qml/Result.qml" line="37"/>
         <location filename="../qml/Search.qml" line="92"/>
         <source>Add to favourites</source>
-        <translation>Zu Favouriten hinzufügen</translation>
+        <translation>Zu Favoriten hinzufügen</translation>
     </message>
     <message id="clearrecent">
         <location filename="../qml/StartPage.qml" line="32"/>
@@ -51,7 +51,7 @@
     <message id="bookmarks">
         <location filename="../qml/StartPage.qml" line="40"/>
         <source>Bookmarks</source>
-        <translation>Favouriten</translation>
+        <translation>Favoriten</translation>
     </message>
     <message id="recent">
         <location filename="../qml/StartPage.qml" line="68"/>
@@ -124,7 +124,7 @@
     <message id="remove-from-favourites">
         <location filename="../qml/Result.qml" line="35"/>
         <source>Remove from favourites</source>
-        <translation>Aus Favouriten entfernen</translation>
+        <translation>Aus Favoriten entfernen</translation>
     </message>
     <message id="refresh">
         <location filename="../qml/Result.qml" line="55"/>
