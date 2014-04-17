@@ -30,10 +30,12 @@ or
 Silica QML2 gui
 --------------
 
-    rsync -Cav . root@jolla:/usr/share/sailtoVienna --exclude qml
-    rsync -Cav qml/silica/ root@jolla:/usr/share/sailtoVienna/qml
-    sailfish-qml sailtoVienna #on device
-
-or
-
-    cp data/sailtoVienna.desktop.sailfish /usr/share/applications/sailtoVienna.desktop #on device and then use the launcher
+    # for pyWL setup see pyWL readme
+    mkdir /usr/share/harbour-sailtovienna/
+    ln -s /home/nemo/<path-to-sailtovienna>/pyWL /usr/share/harbour-sailtovienna/pyWL
+    ln -s /home/nemo/<path-to-sailtovienna>/data /usr/share/harbour-sailtovienna/data
+    ln -s /home/nemo/<path-to-sailtovienna>/translations /usr/share/harbour-sailtovienna/translations
+    ln -s /home/nemo/<path-to-sailtovienna>/glue /usr/share/harbour-sailtovienna/glue
+    ln -s /home/nemo/<path-to-sailtovienna>/qml/silica/ /usr/share/harbour-sailtovienna/qml
+    ln -s /home/nemo/<path-to-sailtovienna>/data/harbour-sailtovienna.png /usr/share/icons/hicolor/86x86/apps/
+    ln -s /home/nemo/<path-to-sailtovienna>/data/harbour-sailtovienna.desktop /usr/share/applications/sailtoVienna.desktop
