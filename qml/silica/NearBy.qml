@@ -16,80 +16,77 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent
-        SilicaFlickable {
-            anchors.fill: parent
-            PullDownMenu {
-                MenuItem {
-                    //% "Settings"
-                    text: qsTrId("settings")
-                    onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
-                }
-                MenuItem {
-                    //% "Search"
-                    text: qsTrId("search")
-                    onClicked: pageStack.replace(Qt.resolvedUrl("Search.qml"))
-                }
+        PullDownMenu {
+            MenuItem {
+                //% "Settings"
+                text: qsTrId("settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
+            }
+            MenuItem {
+                //% "Search"
+                text: qsTrId("search")
+                onClicked: pageStack.replace(Qt.resolvedUrl("Search.qml"))
+            }
+        }
+
+        PageHeader {
+            id: header
+            //% "Nearby"
+            title: qsTrId("nearby")
+        }
+
+        SilicaListView {
+            id: nearbyList
+            anchors.top: header.bottom
+            anchors.bottom: parent.bottom
+            width: parent.width
+            clip: true
+
+            VerticalScrollDecorator {}
+
+            ViewPlaceholder {
+                enabled: nearbyList.count == 0
+                //% "Looking for stations"
+                text: qsTrId("looking-for-stations")
+                anchors.top: parent.top
             }
 
-            PageHeader {
-                id: header
-                //% "Nearby"
-                title: qsTrId("nearby")
-            }
+            model: nearbyModel
 
-            SilicaListView {
-                id: nearbyList
-                anchors.top: header.bottom
-                anchors.bottom: parent.bottom
+            delegate: ListItem {
                 width: parent.width
-                clip: true
+                contentHeight: Theme.itemSizeMedium
 
-                VerticalScrollDecorator {}
+                menu: contextMenu
 
-                ViewPlaceholder {
-                    enabled: nearbyList.count == 0
-                    //% "Looking for stations"
-                    text: qsTrId("looking-for-stations")
-                    anchors.top: parent.top
-                }
+                Row {
+                    anchors.fill: parent
+                    anchors.margins: Theme.paddingLarge
 
-                model: nearbyModel
-
-                delegate: ListItem {
-                    width: parent.width
-                    contentHeight: Theme.itemSizeMedium
-
-                    menu: contextMenu
-
-                    Row {
-                        anchors.fill: parent
-                        anchors.margins: Theme.paddingLarge
-
-                        Label {
-                            width: parent.width * 0.25
-                            anchors.verticalCenter: parent.verticalCenter
-                            //% "km
-                            text: model.distance + " " + qsTrId("km")
-                        }
-
-                        Label {
-                            width: parent.width * 0.75
-                            anchors.verticalCenter: parent.verticalCenter
-                            text: model.name
-                            truncationMode: TruncationMode.Fade
-                        }
+                    Label {
+                        width: parent.width * 0.25
+                        anchors.verticalCenter: parent.verticalCenter
+                        //% "km
+                        text: model.distance + " " + qsTrId("km")
                     }
 
-                    onClicked: pageStack.push(resultPage, {station: model.name})
+                    Label {
+                        width: parent.width * 0.75
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: model.name
+                        truncationMode: TruncationMode.Fade
+                    }
+                }
 
-                    Component {
-                        id: contextMenu
+                onClicked: pageStack.push(resultPage, {station: model.name})
 
-                        ContextMenu {
-                            MenuItem {
-                                //% "Add to favourites"
-                                text: qsTrId("add-to-favourites") //FIXME do add / remove
-                            }
+                Component {
+                    id: contextMenu
+
+                    ContextMenu {
+                        MenuItem {
+                            //% "Add to favourites"
+                            text: qsTrId("add-to-favourites") //FIXME do add / remove
                         }
                     }
                 }
