@@ -66,7 +66,7 @@ Page {
                     Label {
                         width: parent.width * 0.25
                         anchors.verticalCenter: parent.verticalCenter
-                        //% "km
+                        //% "km"
                         text: model.distance + " " + qsTrId("km")
                     }
 
