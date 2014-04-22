@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "db.js" as Db
+
 Page {
     SilicaFlickable {
         anchors.fill: parent

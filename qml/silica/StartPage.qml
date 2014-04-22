@@ -47,7 +47,7 @@ Page {
                 model: appWindow.favorites
 
                 ListItem {
-                    contentHeight: Theme.itemSizeMedium
+                    contentHeight: Theme.itemSizeSmall
                     onClicked: pageStack.push(resultPage, {station: model.station})
 
                     Label {
@@ -75,7 +75,7 @@ Page {
                 model: recent
 
                 ListItem {
-                    contentHeight: Theme.itemSizeMedium
+                    contentHeight: Theme.itemSizeSmall
                     onClicked: pageStack.push(resultPage, {station: model.station})
 
                     Label {

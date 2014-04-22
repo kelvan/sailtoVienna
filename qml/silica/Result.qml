@@ -106,7 +106,7 @@ Page {
 
         delegate: ListItem {
             width: parent.width
-            height: Theme.itemSizeMedium
+            height: Theme.itemSizeSmall
 
             Row {
                 anchors.fill: parent
