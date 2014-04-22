@@ -66,6 +66,12 @@ function removeFavorite(station, callback) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS favorite(station TEXT)');
     });
 
+    for(var i=0; i<appWindow.favorites.count; i++) {
+        if(appWindow.favorites.get(i).station == station) {
+            appWindow.favorites.remove(i);
+        }
+    }
+
     db.transaction(function(tx) {
         var result = tx.executeSql('DELETE FROM favorite WHERE station=?', station);
         callback();
