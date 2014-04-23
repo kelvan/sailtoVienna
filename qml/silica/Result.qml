@@ -7,6 +7,16 @@ Page {
     property string station
     property bool refreshing: false
     property var resultList: ListModel {}
+    property int refreshRate: 0
+
+    Timer {
+        id: refreshTimer
+        interval: refreshRate
+        running: refreshRate > 0
+        repeat: true
+        triggeredOnStart: false
+        onTriggered: refresh()
+     }
 
     onStatusChanged: {
         if (status === PageStatus.Activating) {
@@ -16,6 +26,11 @@ Page {
             });
             resultList.clear();
             refresh();
+            Db.getSetting('autorefresh', 0, function(value) {
+                refreshRate = parseInt(value, 0) * 1000;
+            });
+        } else if (status === PageStatus.Deactivating) {
+            refreshRate = 0;
         }
     }
 
@@ -143,7 +158,8 @@ Page {
 
     function refresh() {
         if(!refreshing) {
-            refreshing = true
+            refreshing = true;
+            console.log('refreshing');
             py.call('glue.gui_departures.deps.get',
                 [station], function(result) {
                     resultList.clear()
@@ -151,7 +167,7 @@ Page {
                         result.forEach(function(entry) {
                             resultList.append(entry)
                         })
-                    refreshing = false
+                    refreshing = false;
             });
         }
     }

@@ -106,9 +106,9 @@ function setSetting(setting, value, callback) {
 function getSetting(setting, default_value, callback) {
    var db = open();
    db.transaction(function(tx) {
-       var result = tx.executeSql('SELECT value FROM settings WHERE setting=?', [setting]);
+       var results = tx.executeSql('SELECT value FROM settings WHERE setting=?', [setting]);
        if (results.rows.length > 0) {
-           callback(rs.rows.item(0).value);
+           callback(results.rows.item(0).value);
        } else {
            callback(default_value);
        }
