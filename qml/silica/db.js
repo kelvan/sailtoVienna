@@ -89,3 +89,28 @@ function getFavorites(callback) {
         callback(result);
     });
 }
+
+function setSetting(setting, value, callback) {
+    var db = open();
+    db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS settings(setting TEXT UNIQUE, value TEXT)');
+        var result = tx.executeSql('INSERT OR REPLACE INTO settings VALUES (?,?)', [setting, value]);
+            if (result.rowsAffected > 0) {
+                callback(true);
+            } else {
+                callback(false);
+            }
+    });
+}
+
+function getSetting(setting, default_value, callback) {
+   var db = open();
+   db.transaction(function(tx) {
+       var result = tx.executeSql('SELECT value FROM settings WHERE setting=?', [setting]);
+       if (results.rows.length > 0) {
+           callback(rs.rows.item(0).value);
+       } else {
+           callback(default_value);
+       }
+   })
+}
