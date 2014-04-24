@@ -9,3 +9,7 @@ function saveAutoRefresh(value) {
         }
     });
 }
+
+function getAutoRefresh(default_value, callback) {
+    Db.getSetting('autorefresh', default_value, callback);
+}
