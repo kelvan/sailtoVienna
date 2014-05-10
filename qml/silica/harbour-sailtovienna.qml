@@ -12,6 +12,7 @@ ApplicationWindow {
     property var recent: ListModel {}
     property var favorites: ListModel {}
     property var nearbyModel: ListModel {}
+    property int startPageContentHeight
     property int py_loaded: 0
     property bool py_completed: py_loaded == 2
 
@@ -33,20 +34,28 @@ ApplicationWindow {
         }
     }
 
+    function updateFlickHeight() {
+        var favHeight = 110 + favorites.count*Theme.itemSizeSmall;
+        var recentHeight = 110 + recent.count*Theme.itemSizeSmall;
+        startPageContentHeight = favHeight + recentHeight;
+    }
+
     function loadFavorites() {
         Db.getFavorites(function insert(result) {
             for(var i = 0; i < result.rows.length; i++) {
                 console.log(result.rows.item(i).station);
                 favorites.append({ station: result.rows.item(i).station });
             }
+            updateFlickHeight();
         });
     }
 
     function loadRecent() {
         Db.loadRecent(function insert(result) {
             for(var i = 0; i < result.rows.length; i++) {
-                recent.append({ station: result.rows.item(i).station });
+                recent.append({ station: result.rows.item(i).station })
             }
+            updateFlickHeight();
         });
     }
 
@@ -55,7 +64,8 @@ ApplicationWindow {
         db.transaction(function(tx) {
             tx.executeSql('DELETE FROM recent')
             recent.clear()
-        })
+            updateFlickHeight();
+        });
     }
 
     Component.onCompleted: {

@@ -5,10 +5,13 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Active && pageStack.depth === 1) {
             pageStack.pushAttached(Qt.resolvedUrl("Search.qml"), {});
+            updateFlickHeight();
         }
     }
 
     SilicaFlickable {
+        id: startFlick
+        contentHeight: startPageContentHeight
         anchors.fill: parent
 
         PullDownMenu {
@@ -44,6 +47,7 @@ Page {
             anchors.top: favHeader.bottom
             width: parent.width
             Repeater {
+                id:favRepeater
                 model: appWindow.favorites
 
                 ListItem {
@@ -61,17 +65,19 @@ Page {
                 }
             }
         }
+
         PageHeader {
             id: recentHeader
             anchors.top: favList.bottom
             //% "Recent"
             title: qsTrId("recent")
         }
-
         Column {
+            id: recentList
             anchors.top: recentHeader.bottom
             width: parent.width
             Repeater {
+                id: recentRepeater
                 model: recent
 
                 ListItem {
