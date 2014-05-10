@@ -5,6 +5,7 @@ import "db.js" as Db
 
 Page {
     SilicaFlickable {
+        id: searchFlick
         anchors.fill: parent
 
         Timer {
@@ -15,6 +16,7 @@ Page {
 
             onTriggered: py.call('glue.gui_search.stops.get', [searchInput.text], function(result) {
                 searchList.model = result;
+                searchFlick.contentHeight = header.height + searchInput.height + searchList.count * Theme.itemSizeMedium
             });
         }
 
@@ -54,6 +56,7 @@ Page {
             id: searchList
             anchors.top: searchInput.bottom
             anchors.bottom: parent.bottom
+            interactive : false
             width: parent.width
             clip: true
 
