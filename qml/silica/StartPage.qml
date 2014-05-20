@@ -29,6 +29,7 @@ Page {
 
         PushUpMenu {
             visible: appWindow.recent.count
+            enabled: appWindow.recent.count
 
             MenuItem {
                 //% "Clear recent"
