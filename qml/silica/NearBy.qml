@@ -15,6 +15,10 @@ Page {
     }
 
     SilicaFlickable {
+        VerticalScrollDecorator {}
+
+        contentHeight: nearbyPageContentHeight
+
         anchors.fill: parent
         PullDownMenu {
             MenuItem {
@@ -37,12 +41,11 @@ Page {
 
         SilicaListView {
             id: nearbyList
+            interactive: false
             anchors.top: header.bottom
             anchors.bottom: parent.bottom
             width: parent.width
             clip: true
-
-            VerticalScrollDecorator {}
 
             ViewPlaceholder {
                 enabled: nearbyList.count == 0

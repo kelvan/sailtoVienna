@@ -8,6 +8,8 @@ Page {
         id: searchFlick
         anchors.fill: parent
 
+        VerticalScrollDecorator {}
+
         Timer {
             id: searchDelay
             interval: 500
@@ -59,8 +61,6 @@ Page {
             interactive : false
             width: parent.width
             clip: true
-
-            VerticalScrollDecorator {}
 
             ViewPlaceholder {
                 enabled: searchList.count == 0

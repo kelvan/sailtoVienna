@@ -13,7 +13,9 @@ ApplicationWindow {
     property var favorites: ListModel {}
     property var nearbyModel: ListModel {}
     property int startPageContentHeight
+    property int nearbyPageContentHeight
     property int py_loaded: 0
+    // all 2 python libs loaded
     property bool py_completed: py_loaded == 2
 
     property var coordinate
@@ -24,6 +26,7 @@ ApplicationWindow {
                 coordinate = position.coordinate;
                 py.call('glue.gui_search.stops.get_nearby', [coordinate.latitude, coordinate.longitude], function(result) {
                     nearbyModel.clear();
+                    nearbyPageContentHeight = result.length * Theme.itemSizeMedium + 110
                     if(result.length > 0) {
                         result.forEach(function(entry) {
                             nearbyModel.append(entry);
