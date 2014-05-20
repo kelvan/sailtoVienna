@@ -86,9 +86,9 @@ Page {
                 height: Theme.itemSizeMedium
 
                 Label {
-                    width: parent.width-busy.width
                     anchors {
                         left: parent.left
+                        right: busy.running ? busy.left: busy.right
                         margins: Theme.paddingLarge
                         verticalCenter: parent.verticalCenter
                     }
