@@ -7,6 +7,19 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
 
+        function qsTrIdStrings() {
+            //% "Off"
+            QT_TRID_NOOP("off")
+            //% "15 sec"
+            QT_TRID_NOOP("15-sec")
+            //% "30 sec"
+            QT_TRID_NOOP("30-sec")
+            //% "1 min"
+            QT_TRID_NOOP("1-min")
+            //% "2 min"
+            QT_TRID_NOOP("2-min")
+        }
+
         Column {
             width: parent.width
             PageHeader {
@@ -27,40 +40,46 @@ Page {
                 }
             }
 
+            ListModel {
+                id: refreshModel
+
+                ListElement {
+                    label: "off"
+                    value: 0
+                }
+                ListElement {
+                    label: "15-sec"
+                    value: 15
+                }
+                ListElement {
+                    label: "30-sec"
+                    value: 30
+                }
+                ListElement {
+                    label: "1-min"
+                    value: 60
+                }
+                ListElement {
+                    label: "2-min"
+                    value: 120
+                }
+            }
+
             ComboBox {
+                id: refreshCombo
+                onCurrentIndexChanged: {
+                    SettingsStore.saveAutoRefresh(refreshModel.get(currentIndex).value);
+                }
+
                 //% "Automatic refresh"
                 label: qsTrId("automatic-refresh")
 
                 menu: ContextMenu {
-
-                    onActivated: {
-                        console.log(index);
-                    }
-
-                    MenuItem {
-                        //% "Off"
-                        text: qsTrId("off")
-                        onClicked: SettingsStore.saveAutoRefresh('off')
-                    }
-                    MenuItem {
-                        //% "15 sec"
-                        text: qsTrId("15-sec")
-                        onClicked: SettingsStore.saveAutoRefresh('15')
-                    }
-                    MenuItem {
-                        //% "30 sec"
-                        text: qsTrId("30-sec")
-                        onClicked: SettingsStore.saveAutoRefresh('30')
-                    }
-                    MenuItem {
-                        //% "1 min"
-                        text: qsTrId("1-min")
-                        onClicked: SettingsStore.saveAutoRefresh('60')
-                    }
-                    MenuItem {
-                        //% "2 min"
-                        text: qsTrId("2-min")
-                        onClicked: SettingsStore.saveAutoRefresh('120')
+                    Repeater {
+                        model: refreshModel
+                        MenuItem {
+                            text: qsTrId(label)
+                        }
                     }
                 }
             }
@@ -77,5 +96,19 @@ Page {
                 }
             }
         }
+    }
+
+    function refreshIndex(value) {
+        for (var i = 0; i < refreshModel.count; ++i) {
+            if (value <= refreshModel.get(i).value) {
+                return i;
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        SettingsStore.getAutoRefresh(0, function(value) {
+            refreshCombo.currentIndex = refreshIndex(value);
+        });
     }
 }
