@@ -77,8 +77,8 @@ Page {
             width: parent.width
 
             PageHeader {
-                //% "Result"
-                title: qsTrId("result")
+                //% "Departures"
+                title: qsTrId("departures")
             }
 
             Item {

@@ -42,16 +42,19 @@ Page {
             title: qsTrId("search")
         }
 
-        TextField {
-            id: searchInput
-            width: parent.width
-            //% "Station"
-            placeholderText: qsTrId("station")
-            label: qsTrId("station")
+        SearchField {
+                id: searchInput
+                width: parent.width
+                //% "Station"
+                placeholderText: qsTrId("station")
+                label: qsTrId("station")
 
-            anchors.top: header.bottom
+                anchors.top: header.bottom
 
-            onTextChanged: if(text.length > 2) searchDelay.restart()
+                onTextChanged: {
+                    if(text.length > 2) searchDelay.restart()
+                }
+
         }
 
         SilicaListView {
@@ -61,13 +64,6 @@ Page {
             interactive : false
             width: parent.width
             clip: true
-
-            ViewPlaceholder {
-                enabled: searchList.count == 0
-                //% "Search stations"
-                text: qsTrId("search-stations")
-                anchors.top: parent.top
-            }
 
             model: ListModel {}
 
