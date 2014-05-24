@@ -47,6 +47,7 @@ Page {
                 width: parent.width
                 //% "Station"
                 placeholderText: qsTrId("station")
+                focus: true
                 label: qsTrId("station")
 
                 anchors.top: header.bottom
