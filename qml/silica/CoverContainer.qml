@@ -2,6 +2,13 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
+    Image {
+        source: '../data/cover.png'
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: parent.width
+        height: sourceSize.height * width / sourceSize.width
+    }
+
     Label {
         anchors.centerIn: parent
         text: "sailtoVienna"
@@ -82,7 +89,7 @@ CoverBackground {
             iconSource: "image://theme/icon-cover-search"
             onTriggered: showSearch()
         }
-        
+
         CoverAction {
             iconSource: "image://theme/icon-cover-refresh"
             onTriggered: refresh()
