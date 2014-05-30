@@ -62,13 +62,15 @@ Page {
             id: searchList
             anchors.top: searchInput.bottom
             anchors.bottom: parent.bottom
-            interactive : false
+            interactive: false
             width: parent.width
             clip: true
 
             model: ListModel {}
 
             delegate: ListItem {
+                property bool isFavorite
+
                 width: parent.width
                 contentHeight: Theme.itemSizeMedium
 
@@ -90,8 +92,27 @@ Page {
 
                     ContextMenu {
                         MenuItem {
+                            //% "Remove from favourites"
+                            text: isFavorite? qsTrId("remove-from-favourites"):
                             //% "Add to favourites"
-                            text: qsTrId("add-to-favourites") //FIXME do add / remove
+                            qsTrId("add-to-favourites")
+
+                            Component.onCompleted: {
+                                Db.isFavorite(modelData, function(result) {
+                                    isFavorite = result;
+                                });
+                            }
+                            onClicked: {
+                                if(isFavorite) {
+                                    Db.removeFavorite(modelData, function(){
+                                        isFavorite = false;
+                                    });
+                                } else {
+                                    Db.addFavorite(modelData, function(){
+                                        isFavorite = true;
+                                    });
+                                }
+                            }
                         }
                     }
                 }

@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "db.js" as Db
+
 Page {
     Component.onCompleted: {
         positionSource.start();
@@ -57,6 +59,8 @@ Page {
             model: nearbyModel
 
             delegate: ListItem {
+                property bool isFavorite
+
                 width: parent.width
                 contentHeight: Theme.itemSizeMedium
 
@@ -88,8 +92,27 @@ Page {
 
                     ContextMenu {
                         MenuItem {
+                            //% "Remove from favourites"
+                            text: isFavorite? qsTrId("remove-from-favourites"):
                             //% "Add to favourites"
-                            text: qsTrId("add-to-favourites") //FIXME do add / remove
+                            qsTrId("add-to-favourites")
+
+                            Component.onCompleted: {
+                                Db.isFavorite(model.name, function(result) {
+                                    isFavorite = result;
+                                });
+                            }
+                            onClicked: {
+                                if(isFavorite) {
+                                    Db.removeFavorite(model.name, function(){
+                                        isFavorite = false;
+                                    });
+                                } else {
+                                    Db.addFavorite(model.name, function(){
+                                        isFavorite = true;
+                                    });
+                                }
+                            }
                         }
                     }
                 }

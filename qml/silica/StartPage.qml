@@ -48,7 +48,7 @@ Page {
             anchors.top: favHeader.bottom
             width: parent.width
             Repeater {
-                id:favRepeater
+                id: favRepeater
                 model: appWindow.favorites
 
                 ListItem {

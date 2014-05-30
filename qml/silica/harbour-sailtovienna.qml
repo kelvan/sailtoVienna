@@ -47,7 +47,9 @@ ApplicationWindow {
         Db.getFavorites(function insert(result) {
             for(var i = 0; i < result.rows.length; i++) {
                 console.log(result.rows.item(i).station);
-                favorites.append({ station: result.rows.item(i).station });
+                if(result.rows.item(i).station) {
+                    favorites.append({ station: result.rows.item(i).station });
+                }
             }
             updateFlickHeight();
         });
