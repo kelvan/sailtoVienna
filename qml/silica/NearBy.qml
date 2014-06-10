@@ -104,11 +104,11 @@ Page {
                             }
                             onClicked: {
                                 if(isFavorite) {
-                                    Db.removeFavorite(model.name, function(){
+                                    Db.removeBookmark(model.name, function(){
                                         isFavorite = false;
                                     });
                                 } else {
-                                    Db.addFavorite(model.name, function(){
+                                    Db.addBookmark(model.name, function(){
                                         isFavorite = true;
                                     });
                                 }

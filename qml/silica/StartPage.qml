@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "db.js" as Db
+
 Page {
     onStatusChanged: {
         if (status === PageStatus.Active && pageStack.depth === 1) {
@@ -52,6 +54,7 @@ Page {
                 model: appWindow.favorites
 
                 ListItem {
+                    id: bookmarkItem
                     contentHeight: Theme.itemSizeSmall
                     onClicked: pageStack.push(resultPage, {station: model.station})
 
@@ -62,6 +65,27 @@ Page {
                             margins: Theme.paddingLarge
                         }
                         text: model.station
+                    }
+
+                    menu: Component {
+                        id: contextMenu
+
+                        ContextMenu {
+                            MenuItem {
+                                //% "Remove from favourites"
+                                text: qsTrId("remove-from-favourites")
+                                onClicked: {
+                                    //% "Removing"
+                                    bookmarkItem.remorseAction(qsTrId('removing'), function() {
+                                        //Db.removeBookmark(modelData, function(success){
+                                            //if(success) {
+                                            //    bookmarkItem.model.remove(index);
+                                            //}
+                                        //});
+                                    });
+                                }
+                            }
+                        }
                     }
                 }
             }

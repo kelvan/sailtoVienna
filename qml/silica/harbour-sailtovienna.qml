@@ -44,7 +44,7 @@ ApplicationWindow {
     }
 
     function loadFavorites() {
-        Db.getFavorites(function insert(result) {
+        Db.getBookmarks(function insert(result) {
             for(var i = 0; i < result.rows.length; i++) {
                 console.log(result.rows.item(i).station);
                 if(result.rows.item(i).station) {

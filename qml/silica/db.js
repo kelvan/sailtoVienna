@@ -46,7 +46,7 @@ function isFavorite(station, callback) {
     });
 }
 
-function addFavorite(station, callback) {
+function addBookmark(station, callback) {
     var db = open();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS favorite(station TEXT)');
@@ -60,7 +60,7 @@ function addFavorite(station, callback) {
     });
 }
 
-function removeFavorite(station, callback) {
+function removeBookmark(station, callback) {
     var db = open();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS favorite(station TEXT)');
@@ -78,7 +78,7 @@ function removeFavorite(station, callback) {
     });
 }
 
-function getFavorites(callback) {
+function getBookmarks(callback) {
     var db = open();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS favorite(station TEXT)');
