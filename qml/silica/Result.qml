@@ -52,11 +52,11 @@ Page {
                 qsTrId("add-to-favourites")
                 onClicked: {
                     if(isFavorite) {
-                        Db.removeFavorite(station, function callback(){
+                        Db.removeBookmark(station, function callback(){
                             isFavorite = false;
                         });
                     } else {
-                        Db.addFavorite(station, function callback(){
+                        Db.addBookmark(station, function callback(){
                             isFavorite = true;
                         });
                     }
