@@ -67,6 +67,10 @@ Page {
                         text: model.station
                     }
 
+                    RemorseItem {
+                        id: favRemorse
+                    }
+
                     menu: Component {
                         id: contextMenu
 
@@ -75,14 +79,13 @@ Page {
                                 //% "Remove from favourites"
                                 text: qsTrId("remove-from-favourites")
                                 onClicked: {
-                                    //% "Removing"
-                                    bookmarkItem.remorseAction(qsTrId('removing'), function() {
-                                        //Db.removeBookmark(modelData, function(success){
-                                            //if(success) {
-                                            //    bookmarkItem.model.remove(index);
-                                            //}
-                                        //});
-                                    });
+                                    favRemorse.execute(bookmarkItem, 'test', function() {
+                                        Db.removeBookmark(modelData, function(success){
+                                            if(success) {
+                                                bookmarkItem.model.remove(index);
+                                            }
+                                        });
+                                    }, 3);
                                 }
                             }
                         }
