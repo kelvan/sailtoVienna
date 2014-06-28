@@ -158,16 +158,19 @@ ApplicationWindow {
             model: ListModel { id: departureModel }
             delegate: Component {
                 id: listDelegate
-                Item {
+                Rectangle {
                     anchors.margins: 10
                     visible: departureListVisible
-                    height: 30
+                    height: 23
                     width: departureList.width
+                    color: index % 2 == 1 ? "lightgray" : "white"
+                    radius: stopList_rect.radius
 
                     Text {
                         id: c_line
                         width: 50
                         anchors.left: parent.left
+                        anchors.margins: 10
                         text: line.name
 
                         MouseArea {
@@ -199,6 +202,7 @@ ApplicationWindow {
                         id: c_countdown
                         width: 30
                         anchors.right: parent.right
+                        anchors.margins: 10
                         horizontalAlignment: Text.AlignRight
                         text: countdown
                     }
@@ -219,7 +223,7 @@ ApplicationWindow {
                 console.log('auto-refresh');
                 load_departures();
             } else {
-                console.log('No active station, cannot autor-refresh');
+                console.log('No active station, cannot auto-refresh');
                 dep_reload_timer.stop();
             }
         }
