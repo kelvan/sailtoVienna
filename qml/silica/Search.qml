@@ -4,6 +4,8 @@ import Sailfish.Silica 1.0
 import "db.js" as Db
 
 Page {
+    property bool attached: false
+
     SilicaFlickable {
         id: searchFlick
         anchors.fill: parent
@@ -32,7 +34,14 @@ Page {
             MenuItem {
                 //% "Nearby"
                 text: qsTrId("nearby")
-                onClicked: pageStack.replace(Qt.resolvedUrl("NearBy.qml"))
+                onClicked: {
+                    if (attached) {
+                        popAttached(null, PageStackAction.Immediate)
+                        pageStack.push(Qt.resolvedUrl("NearBy.qml"))
+                    } else {
+                        pageStack.replace(Qt.resolvedUrl("NearBy.qml"))
+                    }
+                }
             }
         }
 

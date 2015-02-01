@@ -6,7 +6,7 @@ import "db.js" as Db
 Page {
     onStatusChanged: {
         if (status === PageStatus.Active && pageStack.depth === 1) {
-            pageStack.pushAttached(Qt.resolvedUrl("Search.qml"), {});
+            pageStack.pushAttached(Qt.resolvedUrl("Search.qml"), { attached: true });
             updateFlickHeight();
         }
     }
