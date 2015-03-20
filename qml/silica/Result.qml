@@ -7,12 +7,11 @@ Page {
     property string station
     property bool refreshing: false
     property var resultList: ListModel {}
-    property int refreshRate: 0
-
+    
     Timer {
         id: refreshTimer
-        interval: refreshRate
-        running: refreshRate > 0
+        interval: settings.refreshInterval * 1000
+        running: settings.refreshInterval > 0 && status == PageStatus.Active
         repeat: true
         triggeredOnStart: false
         onTriggered: refresh()
@@ -26,12 +25,7 @@ Page {
             });
             resultList.clear();
             refresh();
-            Db.getSetting('autorefresh', 0, function(value) {
-                refreshRate = parseInt(value, 0) * 1000;
-            });
-        } else if (status === PageStatus.Deactivating) {
-            refreshRate = 0;
-        }
+        } 
     }
 
     SilicaListView {

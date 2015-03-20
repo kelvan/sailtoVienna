@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtPositioning 5.2
 import Sailfish.Silica 1.0
 
+import org.nemomobile.configuration 1.0
 import io.thp.pyotherside 1.2
 
 import "db.js" as Db
@@ -36,6 +37,19 @@ ApplicationWindow {
             }
         }
     }
+
+    ConfigurationGroup {
+        path: "/apps/harbour-sailtovienna"
+
+        ConfigurationGroup {
+            id: settings
+
+            path: "settings"
+        
+            property int refreshInterval: 0
+        }
+    }
+
 
     function updateFlickHeight() {
         var favHeight = 110 + favorites.count*Theme.itemSizeSmall;

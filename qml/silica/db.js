@@ -3,7 +3,7 @@
 var limit = 5;
 
 function open() {
-    return Sql.LocalStorage.openDatabaseSync("sailtoVienna", "1", "sailtoVienna settings and recent", 1000);
+    return Sql.LocalStorage.openDatabaseSync("sailtoVienna", "1", "sailtoVienna favorites and recent", 1000);
 }
 
 function addRecent(appWindow, station) {
@@ -88,29 +88,4 @@ function getBookmarks(callback) {
         var result = tx.executeSql('SELECT station FROM favorite ORDER BY station ASC');
         callback(result);
     });
-}
-
-function setSetting(setting, value, callback) {
-    var db = open();
-    db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS settings(setting TEXT UNIQUE, value TEXT)');
-        var result = tx.executeSql('INSERT OR REPLACE INTO settings VALUES (?,?)', [setting, value]);
-            if (result.rowsAffected > 0) {
-                callback(true);
-            } else {
-                callback(false);
-            }
-    });
-}
-
-function getSetting(setting, default_value, callback) {
-   var db = open();
-   db.transaction(function(tx) {
-       var results = tx.executeSql('SELECT value FROM settings WHERE setting=?', [setting]);
-       if (results.rows.length > 0) {
-           callback(results.rows.item(0).value);
-       } else {
-           callback(default_value);
-       }
-   })
 }

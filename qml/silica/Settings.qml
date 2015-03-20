@@ -1,8 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import "settings.js" as SettingsStore
-
 Page {
     SilicaFlickable {
         anchors.fill: parent
@@ -68,7 +66,7 @@ Page {
             ComboBox {
                 id: refreshCombo
                 onCurrentIndexChanged: {
-                    SettingsStore.saveAutoRefresh(refreshModel.get(currentIndex).value);
+                    settings.refreshInterval = refreshModel.get(currentIndex).value;
                 }
 
                 //% "Automatic refresh"
@@ -107,8 +105,6 @@ Page {
     }
 
     Component.onCompleted: {
-        SettingsStore.getAutoRefresh(0, function(value) {
-            refreshCombo.currentIndex = refreshIndex(value);
-        });
+        refreshCombo.currentIndex = refreshIndex(settings.refreshInterval);
     }
 }
