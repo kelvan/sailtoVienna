@@ -86,8 +86,13 @@ CoverBackground {
         enabled: resultPage.status === PageStatus.Active
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-search"
-            onTriggered: showSearch()
+            iconSource: settings.coverActionSearch ? "image://theme/icon-cover-search" : "image://theme/icon-cover-location"
+            onTriggered: {
+                if(settings.coverActionSearch)
+                    showSearch()
+                else
+                    showNearBy()
+            }
         }
 
         CoverAction {

@@ -83,6 +83,11 @@ Page {
             }
 
             ComboBox {
+                id: coverActionCombo
+                onCurrentIndexChanged: {
+                    settings.coverActionSearch = currentIndex == 0;
+                }
+
                 //% "Result view cover action"
                 label: qsTrId("result-view-cover-action")
 
@@ -106,5 +111,6 @@ Page {
 
     Component.onCompleted: {
         refreshCombo.currentIndex = refreshIndex(settings.refreshInterval);
+        coverActionCombo.currentIndex = settings.coverActionSearch ? 0 : 1;
     }
 }

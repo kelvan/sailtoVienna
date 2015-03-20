@@ -47,6 +47,7 @@ ApplicationWindow {
             path: "settings"
         
             property int refreshInterval: 0
+            property bool coverActionSearch: true
         }
     }
 
