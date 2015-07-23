@@ -7,7 +7,7 @@ Page {
     property string station
     property bool refreshing: false
     property var resultList: ListModel {}
-    
+
     Timer {
         id: refreshTimer
         interval: settings.refreshInterval * 1000
@@ -25,7 +25,7 @@ Page {
             });
             resultList.clear();
             refresh();
-        } 
+        }
     }
 
     SilicaListView {
@@ -121,10 +121,11 @@ Page {
                 anchors.fill: parent
                 anchors.margins: Theme.paddingLarge
 
-                Label {
+                LineLogo {
                     width: parent.width * 0.25 - image.width
                     anchors.verticalCenter: parent.verticalCenter
-                    text: model.line.name
+                    linename: model.line.name
+                    linecolour: model.line.colour
                 }
 
                 Image {
