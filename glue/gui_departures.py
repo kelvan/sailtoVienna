@@ -17,6 +17,8 @@ class Deps:
         result_dicts = []
         for station in sorted(departures.values(), key=itemgetter('name')):
             for departure in sorted(station['departures'], key=itemgetter('countdown')):
+                if not departure['line']['colour']:
+                    departure['line']['colour'] = 'transparent'
                 result_dicts.append(departure)
 
         return result_dicts
